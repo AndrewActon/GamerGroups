@@ -48,4 +48,16 @@ class AuthController {
         }
     }
     
+    func deleteAccount() {
+        let user = Auth.auth().currentUser
+        
+        user?.delete { error in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n--\n \(error)")
+            }
+                
+
+        }
+    }
+    
 }//End of Class

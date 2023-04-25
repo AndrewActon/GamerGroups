@@ -43,6 +43,8 @@ class LoginViewController: UIViewController {
                 case .success(let uid):
                     self.userUid = uid
                     print("Login successful")
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
                     self.performSegue(withIdentifier: "toHomeVC", sender: sender)
                 case .failure(_):
                     let alert = UIAlertController(title: "Invalid Username or Password", message: nil, preferredStyle: .alert)

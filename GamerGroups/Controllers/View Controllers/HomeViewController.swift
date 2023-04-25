@@ -155,7 +155,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         if segue.identifier == "toProfileVC" {
             guard let destination = segue.destination as? ProfileViewController else { return }
             
-            destination.modalPresentationStyle = .fullScreen
+//            destination.modalPresentationStyle = .fullScreen
             destination.user = user
             destination.userUID = userUid
             

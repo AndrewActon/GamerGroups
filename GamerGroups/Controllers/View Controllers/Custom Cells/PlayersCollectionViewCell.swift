@@ -18,5 +18,5 @@ class PlayersCollectionViewCell: UICollectionViewCell {
         playerNameLabel.text = user.name
         playerIconImage.image = UIImage(systemName: "person")
     }
-    
+ 
 }

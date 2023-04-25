@@ -70,4 +70,14 @@ class UserController {
         ])
     }
     
+    func deleteUser(uid: String) {
+        AppDelegate.db.collection("users").document(uid).delete() { error in
+            if let error = error {
+                print("Error removing user: \(error)")
+            } else {
+                print("User succesfully deleted")
+            }
+        }
+    }
+    
 }//End Of Class

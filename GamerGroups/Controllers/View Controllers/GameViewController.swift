@@ -31,15 +31,21 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
     //Collection View
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users?.count ?? 0
+        return users?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = playersCollectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as? PlayersCollectionViewCell else { return UICollectionViewCell() }
-        
-        let user = users?[indexPath.row]
-        
-        cell.updateView(user: user)
+                 
+        if users != nil {
+            let user = users?[indexPath.row]
+            
+            cell.updateView(user: user)
+            
+            return cell
+        }
+
+        cell.playerNameLabel.text = "No users play this game"
         
         return cell
     }
@@ -86,9 +92,11 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                         userArray.append(user)
                     }
                 }
-                self.users = userArray
-                DispatchQueue.main.async {
-                    self.playersCollectionView.reloadData()
+                if userArray.count > 0 {
+                    self.users = userArray
+                    DispatchQueue.main.async {
+                        self.playersCollectionView.reloadData()
+                    }
                 }
             case .failure(let error):
                 print("Error in \(#function) : \(error.localizedDescription) \n--\n \(error)")
