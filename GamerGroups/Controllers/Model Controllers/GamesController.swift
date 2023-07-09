@@ -14,7 +14,7 @@ class GamesController {
     
     //MARK: - String Constants
     let baseURL = URL(string: "https://api.twitch.tv/helix/games")
-    let accessToken = "Bearer nmahja7omv8nmojjmajlgrks51u7ce"
+    let accessToken = "Bearer vngp6bfybe5gcc7xw1b8oa7pchmdxf"
     let clientID = "x2uu2is6vpp7txiu622upcffc94o8r"
     let topGamesEndpoint = "/top"
     let baseImageURL = URL(string: "https://static-cdn.jtvnw.net/ttv-boxart")
