@@ -20,6 +20,7 @@ class GamesController {
     let baseImageURL = URL(string: "https://static-cdn.jtvnw.net/ttv-boxart")
     let heightWidth80x80Endpoint = "-80x80.jpg"
     let heightWidth160x160Endpoint = "-160x160.jpg"
+    let heightWidth120x120Endpoint = "-120x120.jpg"
     
 
     //MARK: - Methods
@@ -28,6 +29,16 @@ class GamesController {
         guard let baseImageURL = baseImageURL else { return URL(fileURLWithPath: "https://static-cdn.jtvnw.net/ttv-boxart") }
         
         let imageEndpoint = id + heightWidth80x80Endpoint
+        
+        let imageURL = baseImageURL.appending(path: imageEndpoint)
+        
+        return imageURL
+    }
+    
+    func imageURLFormatter120x120(id: String) -> URL {
+        guard let baseImageURL = baseImageURL else { return URL(fileURLWithPath: "https://static-cdn.jtvnw.net/ttv-boxart") }
+        
+        let imageEndpoint = id + heightWidth120x120Endpoint
         
         let imageURL = baseImageURL.appending(path: imageEndpoint)
         

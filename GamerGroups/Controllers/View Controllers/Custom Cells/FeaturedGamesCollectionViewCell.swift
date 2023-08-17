@@ -21,9 +21,10 @@ class FeaturedGamesCollectionViewCell: UICollectionViewCell {
         gameLabel.text = game.name
 
         let id = game.id
-        let imageURL = GamesController.shared.imageURLFormatter80x80(id: id)
+        let imageURL = GamesController.shared.imageURLFormatter120x120(id: id)
         
         gameImage.load(url: imageURL)
+
     }
     
 }
