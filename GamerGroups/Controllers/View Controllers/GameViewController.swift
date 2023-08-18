@@ -62,7 +62,10 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
             user.games?.append(game.name)
             self.user = user
             UserController.shared.updateUser(user: user)
+            fetchUsers()
+            self.playersCollectionView.reloadData()
         }
+        
     }
     
     //MARK: - Methods
@@ -88,7 +91,7 @@ class GameViewController: UIViewController, UICollectionViewDataSource, UICollec
                     guard let games = user.games,
                           let name = self.game?.name
                     else { return }
-                    if games.contains(name) && user.name != self.user?.name {
+                    if games.contains(name) {
                         userArray.append(user)
                     }
                 }
