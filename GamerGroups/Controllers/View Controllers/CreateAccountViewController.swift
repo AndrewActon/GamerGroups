@@ -17,11 +17,10 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     
     
+    // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     //MARK: - Actions
