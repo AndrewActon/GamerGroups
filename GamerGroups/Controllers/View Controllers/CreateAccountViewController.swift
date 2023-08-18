@@ -35,6 +35,26 @@ class CreateAccountViewController: UIViewController {
               !username.isEmpty
         else { return }
         
+        let child = SpinnerViewController()
+        
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+        
+        self.createAccount(email: email, password: password, username: username, sender: sender)
+
+    }
+    
+    //MARK: - Helper Methods
+    func presentHomeVC() {
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let homeViewVC = main.instantiateViewController(withIdentifier: "homeViewController")
+        homeViewVC.modalPresentationStyle = .fullScreen
+        self.present(homeViewVC, animated: true)
+    }
+    
+    func createAccount(email: String, password: String, username: String, sender: Any) {
         AuthController.shared.createAccount(email: email, password: password, username: username) { result in
             switch result {
             case .success(let user):
@@ -50,14 +70,6 @@ class CreateAccountViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         }
-    }
-    
-    //MARK: - Helper Methods
-    func presentHomeVC() {
-        let main = UIStoryboard(name: "Main", bundle: nil)
-        let homeViewVC = main.instantiateViewController(withIdentifier: "homeViewController")
-        homeViewVC.modalPresentationStyle = .fullScreen
-        self.present(homeViewVC, animated: true)
     }
     
     //MARK: - Navigation

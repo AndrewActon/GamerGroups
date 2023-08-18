@@ -76,11 +76,44 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "toHomeVC", sender: sender)
     }
     
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "Are you sure?", message: "This will permanently delete your account.", preferredStyle: .alert)
+        
+        let deleteAccount = UIAlertAction(title: "Delete Account", style: .destructive) {_ in
+            AuthController.shared.deleteAccount()
+            UserController.shared.deleteUser(uid: self.userUID)
+            self.view.window?.rootViewController?.dismiss(animated: true)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(deleteAccount)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
+        
+        
+    }
     
     
     @IBAction func addTagsButtonTapped(_ sender: Any) {
         
     }
+    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "You are about to logout.", message: "Do you wish to proceed?", preferredStyle: .alert)
+        
+        let logoutAction = UIAlertAction(title: "Logout", style: .destructive) {_ in
+            self.view.window?.rootViewController?.dismiss(animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(logoutAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true)
+    }
+    
     
     
     //MARK: - Helper Methods
