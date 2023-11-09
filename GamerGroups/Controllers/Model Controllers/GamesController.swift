@@ -14,16 +14,16 @@ class GamesController {
     
     //MARK: - String Constants
     let baseURL = URL(string: "https://api.twitch.tv/helix/games")
-    let accessToken = "Bearer vngp6bfybe5gcc7xw1b8oa7pchmdxf"
     let clientID = "x2uu2is6vpp7txiu622upcffc94o8r"
     let topGamesEndpoint = "/top"
     let baseImageURL = URL(string: "https://static-cdn.jtvnw.net/ttv-boxart")
     let heightWidth80x80Endpoint = "-80x80.jpg"
     let heightWidth160x160Endpoint = "-160x160.jpg"
     let heightWidth120x120Endpoint = "-120x120.jpg"
-    
+    var token: Token = Token(accessToken: "")
 
     //MARK: - Methods
+    
     
     func imageURLFormatter80x80(id: String) -> URL {
         guard let baseImageURL = baseImageURL else { return URL(fileURLWithPath: "https://static-cdn.jtvnw.net/ttv-boxart") }
@@ -56,7 +56,31 @@ class GamesController {
     }
     
     //CRUD Functions
+    func getToken(completion: @escaping (Result<Token, GameError>) -> Void) {
+        let docRef = AppDelegate.db.collection("tokens").document("accessToken")
+        
+        docRef.getDocument { document, error in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n--\n \(error)")
+            }
+            
+            if let document = document, document.exists {
+                let newToken = document.data().map { document in
+                    Token(accessToken: document["token"] as? String ?? "")
+                }
+                
+                guard let retrievedToken = newToken else { return completion (.failure(.unableToken)) }
+                
+                self.token = retrievedToken
+            }
+            
+            return completion (.success(self.token))
+        }
+    }
+    
     func getPopularGames(completion: @escaping (Result<[GameData], GameError>) -> Void) {
+        
+        let completedToken: String = "Bearer \(token.accessToken)"
         
          //Build URL
         guard let baseURL = baseURL else { return completion(.failure(.invalidURL)) }
@@ -65,7 +89,7 @@ class GamesController {
          //Create Header
          var request = URLRequest(url: topGamesURL)
          request.httpMethod = "GET"
-         request.addValue(accessToken, forHTTPHeaderField: "Authorization")
+         request.addValue(completedToken, forHTTPHeaderField: "Authorization")
          request.addValue(clientID, forHTTPHeaderField: "Client-Id")
         
         print(topGamesURL)
@@ -97,6 +121,9 @@ class GamesController {
     }
     
     func getSearchedGame(name: String, completion: @escaping (Result<[GameData], GameError>) -> Void) {
+        
+        let completedToken: String = "Bearer \(token.accessToken)"
+        
         //Build URL
         guard let baseURL = baseURL else { return completion(.failure(.invalidURL)) }
         
@@ -109,7 +136,7 @@ class GamesController {
         //Create Header
         var request = URLRequest(url: componentsURL)
         request.httpMethod = "GET"
-        request.addValue(accessToken, forHTTPHeaderField: "Authorization")
+        request.addValue(completedToken, forHTTPHeaderField: "Authorization")
         request.addValue(clientID, forHTTPHeaderField: "Client-Id")
         
         //Data Request

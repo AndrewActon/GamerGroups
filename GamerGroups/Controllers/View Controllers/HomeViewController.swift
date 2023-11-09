@@ -34,7 +34,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         searchResultsCollectionView.delegate = self
         searchResultsCollectionView.dataSource = self
         getUser()
-        getPopularGames()
+        getToken()
+//        getPopularGames()
         createSearchBar()
     }
     
@@ -89,6 +90,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     //MARK: - Helpler Methods
+    
+    func getToken() {
+        GamesController.shared.getToken() { result in
+            switch result {
+            case .success(let token):
+                print(token)
+                self.getPopularGames()
+            case .failure(let error):
+                print("Error in \(#function) : \(error.localizedDescription) \n--\n \(error)")
+            }
+        }
+        
+    }
     
     func getUser() {
         UserController.shared.fetchUser() { result in

@@ -13,6 +13,7 @@ enum GameError: LocalizedError {
     case noData
     case thrownError(Error)
     case unableToDecode
+    case unableToken
     
     var errorDescription: String? {
         switch self {
@@ -24,6 +25,8 @@ enum GameError: LocalizedError {
             return "Error in \(#function) : \(error.localizedDescription) \n--\n \(error)"
         case .unableToDecode:
             return "Unable to decode the data"
+        case .unableToken:
+            return "Unable to retrive access token"
         }
     }
     
