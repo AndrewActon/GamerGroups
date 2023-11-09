@@ -41,6 +41,7 @@
 		BF4CF94A29E34B500010F2B5 /* TagError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4CF94929E34B500010F2B5 /* TagError.swift */; };
 		BF4CF94D29E35B640010F2B5 /* TagSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4CF94C29E35B640010F2B5 /* TagSelectionTableViewCell.swift */; };
 		BF87FA1129EC89920062EABB /* ViewPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF87FA1029EC89920062EABB /* ViewPlayersViewController.swift */; };
+		BFBB90892AFAE6AA00A1804E /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB90882AFAE6A900A1804E /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		BF4CF94929E34B500010F2B5 /* TagError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagError.swift; sourceTree = "<group>"; };
 		BF4CF94C29E35B640010F2B5 /* TagSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		BF87FA1029EC89920062EABB /* ViewPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPlayersViewController.swift; sourceTree = "<group>"; };
+		BFBB90882AFAE6A900A1804E /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				BF4CF92229E1E7930010F2B5 /* User.swift */,
 				BF4CF92429E1E9A40010F2B5 /* Tag.swift */,
 				BF24CA5329EB23EF00054831 /* Game.swift */,
+				BFBB90882AFAE6A900A1804E /* Token.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				BF4CF92329E1E7930010F2B5 /* User.swift in Sources */,
 				BF30359B29F7519E007372BD /* SpinnerViewController.swift in Sources */,
 				BF24CA4E29E72A2700054831 /* UserError.swift in Sources */,
+				BFBB90892AFAE6AA00A1804E /* Token.swift in Sources */,
 				BF4CF92529E1E9A40010F2B5 /* Tag.swift in Sources */,
 				BF24CA5929EB2AB100054831 /* FeaturedGamesCollectionViewCell.swift in Sources */,
 				BF24CA5B29EB2E0E00054831 /* Extensions.swift in Sources */,
@@ -553,8 +557,9 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				kind = versionRange;
+				maximumVersion = 11.0.0;
+				minimumVersion = 10.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
